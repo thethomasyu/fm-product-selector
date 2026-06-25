@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulated Materials · Competitive crosswalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F4EF; --panel:#FFFFFF; --panel2:#FBFAF7; --raise:#F0EFEA;
+  --line:#E2DFD5; --line-soft:#ECEAE3;
+  --ink:#17150E; --ink-dim:#3A372E; --muted:#6B6759; --faint:#908B7B;
+  --basis:#1A4A77; --basis-deep:#EAF1F8; --basis-ink:#143A5E;
+  --strong:#1F7A4D; --strong-bg:#E8F3EC; --strong-ln:#BFD8C8;
+  --close:#9A6B12; --close-bg:#F7EFDA; --close-ln:#E7D8AC;
+  --partial:#6B6759; --partial-bg:#F0EFEA; --partial-ln:#D9D5C9;
+  --warn:#9A6B12;
+  --disp:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --body:'IBM Plex Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #E7EEF6 0%, rgba(231,238,246,0) 60%),
+    var(--bg);
+  color:var(--ink); font-family:var(--body); line-height:1.5;
+  -webkit-font-smoothing:antialiased; padding:0 0 64px;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 22px}
+
+.backlink{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:18px 0 0}
+.backlink:hover{color:var(--basis)}
+
+/* ---------- header ---------- */
+header{padding:18px 0 18px; border-bottom:1px solid var(--line-soft)}
+.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.32em; text-transform:uppercase; color:var(--basis); margin:0 0 12px}
+h1{font-family:var(--disp); font-weight:700; font-size:clamp(28px,4.6vw,46px); line-height:1.02; letter-spacing:-.02em; margin:0 0 12px; max-width:18ch}
+.lede{color:var(--muted); max-width:62ch; margin:0; font-size:15px}
+.lede b{color:var(--ink-dim); font-weight:600}
+
+/* ---------- basis selector ---------- */
+.sectlabel{font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--faint); margin:30px 0 12px; display:flex; align-items:center; gap:10px}
+.sectlabel::after{content:""; flex:1; height:1px; background:var(--line-soft)}
+.chips{display:grid; grid-template-columns:repeat(auto-fill,minmax(196px,1fr)); gap:10px}
+.chip{
+  text-align:left; cursor:pointer; background:var(--panel); border:1px solid var(--line);
+  border-radius:11px; padding:12px 13px; color:var(--ink); font-family:var(--body);
+  transition:border-color .15s, background .15s, transform .12s;
+}
+.chip:hover{border-color:var(--basis); transform:translateY(-1px)}
+.chip:focus-visible{outline:2px solid var(--basis); outline-offset:2px}
+.chip .cn{font-family:var(--disp); font-weight:600; font-size:15px; letter-spacing:-.01em}
+.chip .ca{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+.chip[aria-pressed="true"]{
+  background:linear-gradient(180deg,var(--basis-deep),var(--panel)); border-color:var(--basis);
+  box-shadow:0 0 0 1px var(--basis) inset, 0 8px 24px -18px var(--basis);
+}
+.chip[aria-pressed="true"] .ca{color:var(--basis-ink)}
+
+/* ---------- basis hero ---------- */
+.hero{
+  margin-top:20px; background:linear-gradient(160deg,var(--basis-deep) 0%, var(--panel2) 55%);
+  border:1px solid var(--line); border-left:3px solid var(--basis); border-radius:14px;
+  padding:18px 20px; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center;
+}
+.hero .htag{font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--basis); margin:0 0 6px}
+.hero h2{font-family:var(--disp); font-weight:700; font-size:24px; letter-spacing:-.02em; margin:0 0 4px}
+.hero .hsub{color:var(--ink-dim); font-size:13.5px; margin:0}
+.spectags{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px}
+.tag{font-family:var(--mono); font-size:11px; padding:4px 9px; border-radius:999px; border:1px solid var(--line); color:var(--ink-dim); background:#FFFFFF; white-space:nowrap}
+.tag b{color:var(--basis); font-weight:600}
+.heronum{font-family:var(--mono); text-align:right}
+.heronum .big{font-size:30px; font-weight:600; color:var(--ink)}
+.heronum .lab{font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:2px}
+
+/* ---------- controls ---------- */
+.controls{display:flex; flex-wrap:wrap; gap:9px; align-items:center; margin:22px 0 6px}
+.toggle{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.04em; cursor:pointer;
+  border:1px solid var(--line); background:var(--panel); color:var(--muted);
+  padding:7px 12px; border-radius:8px; transition:.15s; text-transform:uppercase;
+}
+.toggle:hover{border-color:var(--basis); color:var(--ink)}
+.toggle:focus-visible{outline:2px solid var(--basis); outline-offset:2px}
+.toggle[aria-pressed="true"]{background:var(--basis-deep); color:var(--basis-ink); border-color:var(--basis)}
+.spacer{flex:1}
+.count{font-family:var(--mono); font-size:11.5px; color:var(--faint); letter-spacing:.05em}
+
+/* ---------- tier groups ---------- */
+.tier{margin-top:24px}
+.tierhead{display:flex; align-items:baseline; gap:11px; margin:0 0 12px}
+.tierdot{width:9px; height:9px; border-radius:50%; flex:none; transform:translateY(1px)}
+.t-strong .tierdot{background:var(--strong)} .t-close .tierdot{background:var(--close)} .t-partial .tierdot{background:var(--partial)}
+.tiername{font-family:var(--disp); font-weight:600; font-size:16px; letter-spacing:-.01em}
+.tierdesc{font-size:12.5px; color:var(--faint)}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:12px}
+
+/* ---------- result card ---------- */
+.card{background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:15px 16px 14px; position:relative; overflow:hidden}
+.card.s-strong{border-left:3px solid var(--strong)}
+.card.s-close{border-left:3px solid var(--close)}
+.card.s-partial{border-left:3px solid var(--partial)}
+.crow{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.cbrand{font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 3px}
+.cname{font-family:var(--disp); font-weight:600; font-size:17px; letter-spacing:-.01em; margin:0; line-height:1.15}
+.score{font-family:var(--mono); text-align:right; flex:none}
+.score .pct{font-size:23px; font-weight:600; line-height:1}
+.score .pl{font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--faint)}
+.s-strong .score .pct{color:var(--strong)} .s-close .score .pct{color:var(--close)} .s-partial .score .pct{color:var(--partial)}
+
+.bar{height:5px; border-radius:3px; background:var(--line-soft); margin:11px 0 12px; overflow:hidden}
+.bar i{display:block; height:100%; border-radius:3px}
+.s-strong .bar i{background:linear-gradient(90deg,#9CCBAE,var(--strong))}
+.s-close .bar i{background:linear-gradient(90deg,#DCC489,var(--close))}
+.s-partial .bar i{background:linear-gradient(90deg,#CFCBC0,var(--partial))}
+
+/* fingerprint */
+.fp{display:flex; gap:6px; margin-bottom:12px}
+.fp .dim{flex:1; text-align:center}
+.fp .dt{height:4px; border-radius:2px; background:var(--line-soft)}
+.fp .dim.full .dt{background:var(--strong)} .fp .dim.half .dt{background:var(--close)} .fp .dim.none .dt{background:var(--line)}
+.fp .dl{font-family:var(--mono); font-size:8.5px; letter-spacing:.08em; color:var(--faint); margin-top:4px; text-transform:uppercase}
+.fp .dim.full .dl{color:var(--ink-dim)}
+
+.specs{display:grid; grid-template-columns:1fr 1fr; gap:6px 14px; font-family:var(--mono); font-size:11.5px; margin-bottom:11px}
+.specs div{display:flex; justify-content:space-between; gap:8px; border-bottom:1px dotted var(--line-soft); padding-bottom:4px}
+.specs .k{color:var(--faint)} .specs .v{color:var(--ink-dim); text-align:right}
+
+.notes{display:flex; flex-wrap:wrap; gap:6px}
+.note{font-family:var(--mono); font-size:10.5px; padding:3px 8px; border-radius:6px; border:1px solid var(--line); white-space:nowrap}
+.note.ok{color:var(--strong); background:var(--strong-bg); border-color:var(--strong-ln)}
+.note.warn{color:var(--close); background:var(--close-bg); border-color:var(--close-ln)}
+.note.neu{color:var(--ink-dim); background:var(--partial-bg); border-color:var(--partial-ln)}
+
+.empty{font-family:var(--mono); font-size:12.5px; color:var(--faint); border:1px dashed var(--line); border-radius:11px; padding:18px; text-align:center}
+
+/* method */
+details.method{margin-top:30px; border-top:1px solid var(--line-soft); padding-top:16px}
+details.method summary{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--basis); cursor:pointer; list-style:none}
+details.method summary::-webkit-details-marker{display:none}
+details.method summary::before{content:"▸ "; color:var(--faint)}
+details.method[open] summary::before{content:"▾ "}
+.methodbody{color:var(--muted); font-size:13px; max-width:78ch; margin-top:12px}
+.methodbody code{font-family:var(--mono); color:var(--basis-ink); background:#EEF3F9; padding:1px 5px; border-radius:4px; font-size:12px}
+.methodbody ul{padding-left:18px; margin:8px 0}
+.methodbody li{margin:4px 0}
+footer{margin-top:30px; font-family:var(--mono); font-size:10.5px; color:var(--faint); letter-spacing:.04em}
+
+@media (max-width:620px){
+  .hero{grid-template-columns:1fr} .heronum{text-align:left}
+  .specs{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="backlink" href="index.html">&larr; Field tools</a>
+<header>
+  <p class="eyebrow">Formulated Materials · Competitive crosswalk</p>
+  <h1>Competitive crosswalk</h1>
+  <p class="lede">Pick a <b>Formulated leveling product</b> and the tool ranks every competitor in the dataset by how true an <b>apples-to-apples</b> comparison it is, scored on function, cement chemistry, wear-surface role, fiber, thickness, and 28-day strength.</p>
+</header>
+
+<p class="sectlabel">1 · Choose the Formulated product to benchmark</p>
+<div class="chips" id="chips" role="group" aria-label="Formulated products"></div>
+
+<div class="hero" id="hero" aria-live="polite"></div>
+
+<div class="controls">
+  <button class="toggle" id="t-chem" aria-pressed="false">Same chemistry only</button>
+  <button class="toggle" id="t-wear" aria-pressed="false">Same wear role only</button>
+  <button class="toggle" id="t-partial" aria-pressed="false">Show partial overlaps</button>
+  <span class="spacer"></span>
+  <span class="count" id="count"></span>
+</div>
+
+<div id="results"></div>
+
+<details class="method">
+  <summary>How matches are scored</summary>
+  <div class="methodbody">
+    Each competitor earns up to <b>100 points</b> against the selected Formulated product. Higher means closer to a like-for-like comparison.
+    <ul>
+      <li><code>Function / archetype</code>: 38 pts exact (e.g. fiber-SLU vs fiber-SLU), 18 pts same family (leveling vs leveling)</li>
+      <li><code>Wear-surface role</code>: 16 pts (a covered underlayment is not apples-to-apples with a direct wear topping)</li>
+      <li><code>Thickness overlap</code>: up to 12 pts (single-lift range overlap)</li>
+      <li><code>28-day compressive</code>: up to 12 pts (closer strength scores higher)</li>
+      <li><code>Fiber reinforcement</code>: 9 pts match. <code>Interior/exterior</code>: 5 pts match</li>
+      <li><code>Cement chemistry</code>: 8 pt bonus for same family (calcium-aluminate / Portland / gypsum / geopolymer)</li>
+    </ul>
+    <p style="margin:11px 0"><b>On cement chemistry:</b> a product is labelled calcium-aluminate, Portland, gypsum, or geopolymer <i>only where the manufacturer’s TDS/SDS states it</i>. Products that publish only “cementitious,” “hydraulic,” or a proprietary system are shown as <b>Proprietary blend (undisclosed)</b> and score <i>neutral</i> on chemistry. The tool will not assert a backbone it cannot source in either direction.</p>
+    Tiers: <b>Direct match</b> ≥ 78. <b>Close alternative</b> 60 to 77. <b>Partial overlap</b> 40 to 59. Where a value isn’t published, that dimension scores neutral (half credit) rather than penalizing the product. Pricing is not a factor.
+  </div>
+</details>
+<footer>Built from the multi-brand leveler dataset · 63 products · 11 competitor brands · figures from manufacturer TDS, ~70°F/50% RH · verify on current data sheets before specifying.</footer>
+</div>
+
+<script>
+const FAMILY={standard_slu:"leveling",fiber_slu:"leveling",deep_pour_slu:"leveling",industrial_topping:"topping",finishing_skim:"thin",resurfacer_patch:"thin"};
+const ARCH={standard_slu:"Standard SLU",fiber_slu:"Fiber-reinforced SLU",deep_pour_slu:"Deep-pour SLU",industrial_topping:"Industrial wear topping",finishing_skim:"Finishing / skim",resurfacer_patch:"Resurfacer / patch"};
+
+// th = [min,max] inches (single lift) for overlap math; comp = 28-day midpoint psi
+const P=[
+// ---- FORMULATED (bases) ----
+{b:"Formulated",n:"HydroPhase P150 SL",a:"standard_slu",cf:"gypsum",cl:"Gypsum-based",w:0,f:0,e:0,th:[.0625,1.5],thd:'1/8"–1-1/2"',c:5000,basis:1},
+{b:"Formulated",n:"Combimix BetongSpackel",a:"resurfacer_patch",cf:"portland",cl:"Cement (frost-resistant)",w:0,f:0,e:1,th:[.02,.5],thd:'Feather–1/2"',c:4000,basis:1},
+{b:"Formulated",n:"Combimix CM 750 S",a:"standard_slu",cf:"portland",cl:"Cement, self-drying",w:0,f:0,e:0,th:[.02,.5],thd:'0–1/2"',c:4300,basis:1},
+{b:"Formulated",n:"Combimix CM 760 Fiber",a:"fiber_slu",cf:"cac",cl:"Calcium-aluminate + fiber",w:0,f:1,e:1,th:[.25,2],thd:'1/4"–2"',c:4500,basis:1},
+{b:"Formulated",n:"Combimix CM 780 Fiber Basic",a:"deep_pour_slu",cf:"cac",cl:"Calcium-aluminate + fiber",w:0,f:1,e:0,th:[.25,4],thd:'1/4"–4"',c:4500,basis:1},
+{b:"Formulated",n:"Combimix CM 920 Industrial",a:"industrial_topping",cf:"portland",cl:"Cement, industrial",w:1,f:0,e:0,th:[.2,1.25],thd:'0.2"–1.25"',c:5200,basis:1},
+{b:"Formulated",n:"Combimix CM 940 Industrial Top",a:"industrial_topping",cf:"portland",cl:"Cement, industrial",w:1,f:0,e:0,th:[.125,.5],thd:'1/8"–1/2"',c:5200,basis:1},
+{b:"Formulated",n:"Combimix CM 960 Industrial Super Top",a:"industrial_topping",cf:"portland",cl:"Cement, abrasion-resistant",w:1,f:0,e:1,th:[.375,.875],thd:'3/8"–7/8"',c:4350,basis:1},
+{b:"Formulated",n:"Combimix FF 830",a:"finishing_skim",cf:"portland",cl:"Cement, quick-drying",w:0,f:0,e:0,th:[.02,.5],thd:'Feather–1/2"',c:4350,basis:1},
+// ---- MAPEI ----
+{b:"Mapei",n:"Novoplan 2 Plus",a:"standard_slu",cf:"portland",cl:"Portland / cement",w:0,f:0,e:0,th:[.125,2],thd:'1/8"–2"',c:4200},
+{b:"Mapei",n:"Ultraplan 1 Plus",a:"standard_slu",cf:"portland",cl:"Rapid cement, self-drying",w:0,f:0,e:0,th:[.02,1.5],thd:'Feather–1-1/2"',c:4100},
+{b:"Mapei",n:"Ultraplan M20 Plus",a:"industrial_topping",cf:"cac",cl:"Calcium-aluminate",w:1,f:0,e:0,th:[.125,2],thd:'1/8"–2"',c:5000},
+{b:"Mapei",n:"Ultraplan Extreme 2",a:"standard_slu",cf:"portland",cl:"Hydraulic cement",w:0,f:0,e:0,th:[.125,1],thd:'1/8"–1"',c:null},
+{b:"Mapei",n:"Novoplan Easy Plus",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:[.125,1],thd:'1/8"–1"',c:null},
+{b:"Mapei",n:"Novoplan SP",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+{b:"Mapei",n:"Novoplan DPL",a:"deep_pour_slu",cf:"cac",cl:"Calcium-aluminate (deep)",w:0,f:0,e:0,th:null,thd:'Deep pour',c:null},
+{b:"Mapei",n:"Novoplan HFL",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate (hi-flow)",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+{b:"Mapei",n:"Ultraplan Easy",a:"standard_slu",cf:"portland",cl:"Cement, quick-set",w:0,f:0,e:0,th:[.02,2],thd:'Feather–2"',c:null},
+{b:"Mapei",n:"Ultraplan Lite",a:"standard_slu",cf:"cac",cl:"Poly-mod CAC, lightweight",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+{b:"Mapei",n:"Planitex SLF",a:"fiber_slu",cf:"gypsum",cl:"Gypsum + fiber",w:0,f:1,e:0,th:null,thd:'See TDS',c:null},
+{b:"Mapei",n:"Self-Leveler Plus",a:"standard_slu",cf:"portland",cl:"Portland, regular-set",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+// ---- CUSTOM ----
+{b:"Custom",n:"LevelQuik RS",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate (Portland)",w:0,f:0,e:0,th:[.02,1.5],thd:'Feather–1-1/2"',c:4300},
+{b:"Custom",n:"LevelQuik ES",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:[.02,1.5],thd:'Feather–1-1/2"',c:4000},
+// ---- CUSTOMTECH ----
+{b:"CustomTech",n:"TechLevel 100",a:"standard_slu",cf:"portland",cl:"Cement (Portland)",w:0,f:0,e:0,th:[.1875,1.5],thd:'3/16"–1-1/2"',c:4000},
+{b:"CustomTech",n:"TechLevel 125 Deep Pour",a:"deep_pour_slu",cf:"portland",cl:"Cement",w:0,f:0,e:0,th:[.25,3],thd:'1/4"–3"',c:4000},
+{b:"CustomTech",n:"TechLevel 150",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:[.02,1.5],thd:'Feather–1-1/2"',c:4300},
+{b:"CustomTech",n:"TechLevel XP-1",a:"industrial_topping",cf:"cac",cl:"Calcium-aluminate, hi-strength",w:1,f:0,e:0,th:[.125,2],thd:'To 2"',c:null},
+{b:"CustomTech",n:"TechLevel WSF",a:"fiber_slu",cf:"cac",cl:"Calcium-aluminate + fiber",w:0,f:1,e:0,th:null,thd:'See TDS',c:null},
+// ---- LATICRETE ----
+{b:"Laticrete",n:"NXT Level",a:"standard_slu",cf:"portland",cl:"Portland + silica",w:0,f:0,e:0,th:[.125,3],thd:'To 3"',c:5000},
+{b:"Laticrete",n:"NXT Level Plus",a:"fiber_slu",cf:"portland",cl:"Portland + fiber",w:0,f:1,e:0,th:[.125,1.25],thd:'1/8"–1-1/4"',c:5400},
+{b:"Laticrete",n:"NXT Level Plus Lite",a:"fiber_slu",cf:"portland",cl:"Portland + fiber, lightweight",w:0,f:1,e:0,th:[.125,4],thd:'1/8"–4"',c:null},
+{b:"Laticrete",n:"NXT Level Flow",a:"standard_slu",cf:"portland",cl:"Portland (hi-flow)",w:0,f:0,e:0,th:null,thd:'See TDS',c:4100},
+{b:"Laticrete",n:"NXT Level DL",a:"industrial_topping",cf:"portland",cl:"Portland, polishable",w:1,f:0,e:0,th:[.5,1],thd:'Min 1/2"',c:5100},
+{b:"Laticrete",n:"NXT Level SP",a:"industrial_topping",cf:"portland",cl:"Portland, polishable",w:1,f:0,e:0,th:null,thd:'See TDS',c:6500},
+// ---- TEC ----
+{b:"TEC",n:"Level Set 200",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:[.125,2],thd:'1/8"–2"',c:5000},
+{b:"TEC",n:"Level Set 300",a:"fiber_slu",cf:"cac",cl:"Calcium-aluminate + fiber",w:0,f:1,e:0,th:null,thd:'See TDS',c:null},
+{b:"TEC",n:"Level Set 500 HF",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate (hi-flow)",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+{b:"TEC",n:"Level Set Deep Pour 3",a:"deep_pour_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:[.125,3],thd:'To 3"',c:null},
+{b:"TEC",n:"Level Set LW-60",a:"standard_slu",cf:"portland",cl:"Cement, ultra-lightweight",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+{b:"TEC",n:"Contractor Grade SLU",a:"standard_slu",cf:"portland",cl:"Cement",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+// ---- SIKA ----
+{b:"Sika",n:"SikaLevel (SLU)",a:"standard_slu",cf:"portland",cl:"Cementitious",w:0,f:0,e:0,th:[.125,2],thd:'1/8"–2"',c:3750},
+{b:"Sika",n:"Sika Level-125",a:"standard_slu",cf:"portland",cl:"Polymer-mod cementitious",w:0,f:0,e:0,th:[.125,2],thd:'1/8"–2"',c:4000},
+{b:"Sika",n:"Sika Level-325",a:"standard_slu",cf:"portland",cl:"Cementitious",w:0,f:0,e:1,th:[.125,3],thd:'1/8"–3"',c:5300},
+{b:"Sika",n:"Sika Level-425",a:"standard_slu",cf:"portland",cl:"Cementitious, hi-strength",w:0,f:0,e:0,th:null,thd:'See TDS',c:5600},
+// ---- ARDEX ----
+{b:"Ardex",n:"K 15",a:"standard_slu",cf:"portland",cl:"Portland (Ardurapid)",w:0,f:0,e:0,th:[.125,1.5],thd:'1/8"–1-1/2"',c:5500},
+{b:"Ardex",n:"TL 2000",a:"fiber_slu",cf:"portland",cl:"Cement + fiber",w:0,f:1,e:0,th:[.02,1],thd:'To 1"',c:6000},
+{b:"Ardex",n:"CD / CD Fine",a:"resurfacer_patch",cf:"portland",cl:"Cement dressing",w:0,f:0,e:1,th:[.02,.125],thd:'Feather–1/8"',c:4000},
+{b:"Ardex",n:"K 301",a:"industrial_topping",cf:"portland",cl:"Cement, exterior",w:1,f:0,e:1,th:[.25,.75],thd:'1/4"–3/4"',c:4300},
+{b:"Ardex",n:"K 520",a:"industrial_topping",cf:"portland",cl:"Cement, polishable",w:1,f:0,e:0,th:[.25,1],thd:'1/4"–1"',c:6000},
+{b:"Ardex",n:"K 521 / 523",a:"industrial_topping",cf:"portland",cl:"Cement + aggregate",w:1,f:0,e:0,th:[.375,2],thd:'3/8"–2"',c:6800},
+{b:"Ardex",n:"Feather Finish (SD-F)",a:"finishing_skim",cf:"portland",cl:"Portland + hydraulic, self-dry",w:0,f:0,e:0,th:[.02,.25],thd:'Feather–1/4"',c:4200},
+// ---- WAKOL ----
+{b:"Wakol",n:"Z 615",a:"standard_slu",cf:"portland",cl:"Portland & hydraulic",w:0,f:0,e:0,th:[.125,1],thd:'1/8"–1"',c:5076},
+{b:"Wakol",n:"Z 631",a:"standard_slu",cf:"portland",cl:"Portland & hydraulic (fast)",w:0,f:0,e:0,th:[.125,1],thd:'1/8"–1"',c:null},
+// ---- SCHÖNOX ----
+{b:"Schönox",n:"APF",a:"fiber_slu",cf:"gypsum",cl:"Synthetic gypsum + fiber",w:0,f:1,e:0,th:[.125,2],thd:'≥ 1/8"',c:5800},
+{b:"Schönox",n:"AP",a:"standard_slu",cf:"gypsum",cl:"Synthetic gypsum",w:0,f:0,e:0,th:[.02,2],thd:'To 2"',c:5800},
+// ---- UZIN ----
+{b:"Uzin",n:"NC 174",a:"standard_slu",cf:"cac",cl:"Calcium-aluminate",w:0,f:0,e:0,th:null,thd:'See TDS',c:5300},
+{b:"Uzin",n:"NC 170 (LevelStar)",a:"standard_slu",cf:"portland",cl:"Cementitious, hi-strength",w:0,f:0,e:0,th:null,thd:'See TDS',c:6000},
+{b:"Uzin",n:"NC 150 F",a:"fiber_slu",cf:"portland",cl:"Portland + fiber",w:0,f:1,e:0,th:[.125,1],thd:'1/8"–1"',c:4500},
+{b:"Uzin",n:"NC 172 BiTurbo",a:"standard_slu",cf:"portland",cl:"Cementitious, ultra-fast",w:0,f:0,e:0,th:[.0625,1],thd:'From 1/16"',c:8000},
+// ---- USG DUROCK ----
+{b:"USG Durock",n:"Quik-Top (White/Gray)",a:"industrial_topping",cf:"portland",cl:"Cementitious, pre-sanded",w:1,f:0,e:0,th:[.02,3],thd:'Feather–3"',c:8500},
+{b:"USG Durock",n:"ProFlow",a:"standard_slu",cf:"gypsum",cl:"Gypsum concrete",w:1,f:0,e:0,th:[.02,.75],thd:'Feather–3/4"',c:7000},
+{b:"USG Durock",n:"Multi-Use SLU",a:"standard_slu",cf:"portland",cl:"Cementitious, pre-sanded",w:0,f:0,e:0,th:[.375,3],thd:'3/8"–3"',c:null},
+{b:"USG Durock",n:"EcoCap (geopolymer)",a:"standard_slu",cf:"geopolymer",cl:"Geopolymer (fly ash)",w:0,f:0,e:0,th:null,thd:'See TDS',c:null},
+];
+const CHEMSHORT={cac:"CAC",portland:"Portland",gypsum:"Gypsum",geopolymer:"Geopolymer",blend:"Proprietary"};
+const bases=P.filter(p=>p.basis);
+const comps=P.filter(p=>!p.basis);
+// Chemistry confidence: keep a specific label (CAC / Portland / gypsum / geopolymer) ONLY where the
+// manufacturer's TDS/SDS states it. Products that publish only "cementitious"/"hydraulic"/a proprietary
+// system become "Proprietary blend (undisclosed)" — we do NOT assert a backbone we can't source.
+const UNDISCLOSED={
+ "Combimix BetongSpackel":"Proprietary blend (frost-resistant)",
+ "Combimix CM 750 S":"Proprietary blend (self-drying)",
+ "Combimix CM 920 Industrial":"Proprietary blend (industrial)",
+ "Combimix CM 940 Industrial Top":"Proprietary blend (industrial)",
+ "Combimix CM 960 Industrial Super Top":"Proprietary blend (abrasion-resistant)",
+ "Combimix FF 830":"Proprietary blend (quick-drying)",
+ "Ultraplan 1 Plus":"Proprietary blend (rapid, self-drying)",
+ "Ultraplan Extreme 2":"Proprietary hydraulic blend",
+ "Ultraplan Easy":"Proprietary blend (quick-set)",
+ "SikaLevel (SLU)":"Proprietary cementitious blend",
+ "Sika Level-125":"Polymer-mod blend (undisclosed)",
+ "Sika Level-325":"Proprietary cementitious blend",
+ "Sika Level-425":"Proprietary blend (hi-strength)",
+ "Quik-Top (White/Gray)":"Proprietary blend (pre-sanded)",
+ "Multi-Use SLU":"Proprietary blend (pre-sanded)",
+ "Level Set LW-60":"Proprietary blend (ultra-lightweight)",
+ "Contractor Grade SLU":"Proprietary cementitious blend",
+ "TechLevel 125 Deep Pour":"Proprietary blend (deep-pour)",
+ "NC 170 (LevelStar)":"Proprietary blend (hi-strength)",
+ "NC 172 BiTurbo":"Proprietary blend (ultra-fast)",
+};
+P.forEach(p=>{ if(UNDISCLOSED[p.n]){ p.cf="blend"; p.cl=UNDISCLOSED[p.n]; } });
+
+function overlap(a,b){const lo=Math.max(a[0],b[0]),hi=Math.min(a[1],b[1]),span=Math.max(a[1],b[1])-Math.min(a[0],b[0]);if(span<=0)return 1;return Math.max(0,(hi-lo)/span);}
+
+function score(F,c){
+  let s=0; const d={};
+  if(c.a===F.a){s+=38; d.arch="full";} else if(FAMILY[c.a]===FAMILY[F.a]){s+=18; d.arch="half";} else d.arch="none";
+  if(c.w===F.w){s+=16; d.wear="full";} else d.wear="none";
+  if(c.f===F.f){s+=9; d.fiber="full";} else d.fiber="none";
+  if(c.e===F.e){s+=5;}
+  if(c.th&&F.th){const ov=overlap(c.th,F.th); s+=12*ov; d.thick=ov>.6?"full":ov>.2?"half":"none";}
+  else {s+=6; d.thick="half";}
+  if(c.c&&F.c){const v=Math.max(0,1-Math.abs(c.c-F.c)/F.c/.5); s+=12*v; d.psi=v>.7?"full":v>.3?"half":"none";}
+  else {s+=6; d.psi="half";}
+  if(c.cf==="blend"||F.cf==="blend"){d.chem="half";}
+  else if(c.cf===F.cf){s+=8; d.chem="full";}
+  else d.chem="none";
+  return {s:Math.round(s),d};
+}
+function notes(F,c){
+  const out=[];
+  if(c.cf==="blend"||F.cf==="blend") out.push(["neu","Chemistry not disclosed"]);
+  else if(c.cf===F.cf) out.push(["ok","Same chemistry ("+CHEMSHORT[c.cf]+")"]);
+  else out.push(["warn",CHEMSHORT[c.cf]+" vs your "+CHEMSHORT[F.cf]]);
+  if(c.w!==F.w) out.push(["warn", F.w?"Not a direct wear surface":"Rated as wear surface"]);
+  if(c.f!==F.f) out.push(["warn", F.f?"No fiber reinforcement":"Fiber-reinforced"]);
+  if(c.c&&F.c){const dl=c.c-F.c, r=Math.abs(dl)/F.c;
+    if(r<.1) out.push(["neu","Comparable strength"]);
+    else if(dl>0) out.push(["neu","Higher strength (+"+dl.toLocaleString()+" psi)"]);
+    else out.push(["neu","Lower strength ("+dl.toLocaleString()+" psi)"]);
+  } else out.push(["neu","Strength not published"]);
+  if(c.th&&F.th){ if(c.th[1]>F.th[1]*1.25) out.push(["neu",'Pours thicker (to '+c.th[1]+'")']);
+    else if(c.th[1]<F.th[1]*.75) out.push(["neu",'Thinner max ('+c.th[1]+'")']); }
+  if(!F.e&&c.e) out.push(["neu","Also exterior-rated"]);
+  if(F.e&&!c.e) out.push(["warn","Interior only"]);
+  return out.slice(0,4);
+}
+const fpLabels=[["arch","FUNC"],["chem","CHEM"],["wear","WEAR"],["fiber","FIBER"],["thick","THICK"],["psi","PSI"]];
+
+let selected=bases[0].n;
+const state={chem:false,wear:false,partial:false};
+
+function tier(s){return s>=78?"strong":s>=60?"close":s>=40?"partial":"weak";}
+const TIERMETA={strong:["Direct match","True apples-to-apples, swap-level comparison","t-strong"],
+  close:["Close alternative","Same function, one or two meaningful differences","t-close"],
+  partial:["Partial overlap","Related, but a different chemistry, role, or class","t-partial"]};
+
+function render(){
+  const F=bases.find(b=>b.n===selected);
+  // chips
+  document.querySelectorAll(".chip").forEach(ch=>ch.setAttribute("aria-pressed", ch.dataset.n===selected));
+  // hero
+  document.getElementById("hero").innerHTML=`
+    <div>
+      <p class="htag">Benchmark basis</p>
+      <h2>${F.n}</h2>
+      <p class="hsub">${ARCH[F.a]} · ${F.cl}</p>
+      <div class="spectags">
+        <span class="tag">Function <b>${ARCH[F.a]}</b></span>
+        <span class="tag">Chemistry <b>${CHEMSHORT[F.cf]}</b></span>
+        <span class="tag">Wear surface <b>${F.w?"Yes":"No"}</b></span>
+        <span class="tag">Fiber <b>${F.f?"Yes":"No"}</b></span>
+        <span class="tag">Use <b>${F.e?"Int + Ext":"Interior"}</b></span>
+        <span class="tag">Thickness <b>${F.thd}</b></span>
+      </div>
+    </div>
+    <div class="heronum"><div class="big">${F.c?F.c.toLocaleString():"—"}</div><div class="lab">psi · 28-day</div></div>`;
+  // score competitors
+  let scored=comps.map(c=>{const r=score(F,c); return {c,...r,tier:tier(r.s)};})
+    .filter(x=>x.tier!=="weak")
+    .sort((a,b)=>b.s-a.s);
+  if(state.chem) scored=scored.filter(x=>x.c.cf===F.cf);
+  if(state.wear) scored=scored.filter(x=>x.c.w===F.w);
+  if(!state.partial) scored=scored.filter(x=>x.tier!=="partial");
+
+  document.getElementById("count").textContent=scored.length+" of "+comps.length+" competitors shown";
+  const groups={strong:[],close:[],partial:[]};
+  scored.forEach(x=>groups[x.tier].push(x));
+  const res=document.getElementById("results"); res.innerHTML="";
+  let any=false;
+  ["strong","close","partial"].forEach(t=>{
+    if(!groups[t].length) return; any=true;
+    const [name,desc,cls]=TIERMETA[t];
+    const sec=document.createElement("div"); sec.className="tier "+cls;
+    sec.innerHTML=`<div class="tierhead"><span class="tierdot"></span><span class="tiername">${name}</span><span class="tierdesc">${desc} · ${groups[t].length}</span></div>`;
+    const grid=document.createElement("div"); grid.className="grid";
+    groups[t].forEach(x=>grid.appendChild(card(F,x)));
+    sec.appendChild(grid); res.appendChild(sec);
+  });
+  if(!any){const e=document.createElement("div"); e.className="empty";
+    e.textContent="No competitors clear the threshold with these filters. Try turning on “Show partial overlaps” or clearing the chemistry/wear filters. This product may simply have few like-for-like rivals in the dataset.";
+    res.appendChild(e);}
+}
+function card(F,x){
+  const c=x.c, el=document.createElement("article"); el.className="card s-"+x.tier;
+  const fp=fpLabels.map(([k,l])=>`<div class="dim ${x.d[k]||'none'}"><div class="dt"></div><div class="dl">${l}</div></div>`).join("");
+  const ns=notes(F,c).map(([t,txt])=>`<span class="note ${t}">${txt}</span>`).join("");
+  el.innerHTML=`
+    <div class="crow">
+      <div><p class="cbrand">${c.b}</p><h3 class="cname">${c.n}</h3></div>
+      <div class="score"><div class="pct">${x.s}</div><div class="pl">match</div></div>
+    </div>
+    <div class="bar"><i style="width:${x.s}%"></i></div>
+    <div class="fp">${fp}</div>
+    <div class="specs">
+      <div><span class="k">Function</span><span class="v">${ARCH[c.a]}</span></div>
+      <div><span class="k">Chemistry</span><span class="v">${CHEMSHORT[c.cf]}</span></div>
+      <div><span class="k">28-day</span><span class="v">${c.c?c.c.toLocaleString()+" psi":"—"}</span></div>
+      <div><span class="k">Thickness</span><span class="v">${c.thd}</span></div>
+    </div>
+    <div class="notes">${ns}</div>`;
+  return el;
+}
+
+// build chips
+const chipWrap=document.getElementById("chips");
+bases.forEach(b=>{
+  const btn=document.createElement("button");
+  btn.className="chip"; btn.dataset.n=b.n; btn.setAttribute("aria-pressed", b.n===selected);
+  btn.innerHTML=`<div class="cn">${b.n.replace("Combimix ","").replace("HydroPhase ","HydroPhase ")}</div><div class="ca">${ARCH[b.a]} · ${CHEMSHORT[b.cf]}</div>`;
+  btn.onclick=()=>{selected=b.n; render();};
+  chipWrap.appendChild(btn);
+});
+function bindToggle(id,key){const el=document.getElementById(id);
+  el.onclick=()=>{state[key]=!state[key]; el.setAttribute("aria-pressed",state[key]); render();};}
+bindToggle("t-chem","chem"); bindToggle("t-wear","wear"); bindToggle("t-partial","partial");
+
+// Arrive from a Product Selector result via crosswalk.html#CM760 (or #CM920, #HydroPhaseP150, etc.)
+// and pre-select that Formulated product. Tolerant matching so any reasonable key resolves.
+function keyToBase(raw){
+  const norm = s => (s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+  const h = norm((raw||"").replace(/^#/,""));
+  if(!h) return null;
+  let hit = bases.find(b=>norm(b.n).includes(h));
+  if(hit) return hit.n;
+  const num = h.match(/\d{3,4}/);
+  if(num){ hit = bases.find(b=>norm(b.n).includes(num[0])); if(hit) return hit.n; }
+  return null;
+}
+function applyHash(){ const k = keyToBase(location.hash); if(k) selected = k; }
+applyHash();
+render();
+window.addEventListener("hashchange", ()=>{ applyHash(); render(); });
+</script>
+</body>
+</html>
